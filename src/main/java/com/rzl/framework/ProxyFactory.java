@@ -29,14 +29,18 @@ public class ProxyFactory<T> {
                 Invocation invocation = new Invocation(interfaceClass.getName(), method.getName(),
                         method.getParameterTypes(), args);
 
+                Invoker invoker = ClusterInvoker.join(interfaceClass);
+
+                return invoker.invoke(invocation);
+
 //                // 1. 直接连接，最简单的方式
 //                HttpClient httpClient = new HttpClient();
 //                String result = httpClient.send("localhost", 8080, invocation);
 //                return result;
 
                 // 2. 注册中心 interfaceClass.getName()-----> ip + port
-                List<URL> urls = RemoteMapRegister.get(interfaceClass.getName());
-                URL url = LoadBalance.random(urls);
+//                List<URL> urls = RemoteMapRegister.get(interfaceClass.getName());
+//                URL url = LoadBalance.random(urls);
 
                 // 可以选用不同的协议
 //                HttpClient httpClient = new HttpClient();
@@ -44,10 +48,11 @@ public class ProxyFactory<T> {
 //                String protocolName = System.getProperty("protocolName");
 
                 // 从URL中拿到协议
-                Protocol protocol = ProtocolFactory.getProtocol(url.getProtocol());
-                String result = protocol.send(url, invocation);
-
-                return result;
+//                Protocol protocol = ProtocolFactory.getProtocol(url.getProtocol());
+//                String result = protocol.send(url, invocation);
+//                Invoker invoker = protocol.refer(url);  // 根据不同协议返回具体的invoker
+//
+//                return invoker.invoke(invocation);
             }
         });
     }

@@ -14,15 +14,15 @@ public class Provider {
 
         System.out.println("provider start...");
 
-        // 本地注册
-        LocalRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
-
-        // 将协议信息加入URL中
-        String protocolName = System.getProperty("protocolName");
-
-        // 注册中心注册
-        URL url = new URL(protocolName,"localhost", 8080);
-        RemoteMapRegister.regist(HelloService.class.getName(), url);
+//        // 本地注册
+//        LocalRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
+//
+//        // 将协议信息加入URL中
+//        String protocolName = System.getProperty("protocolName");
+//
+//        // 注册中心注册
+//        URL url = new URL(protocolName,"localhost", 8080);
+//        RemoteMapRegister.regist(HelloService.class.getName(), url);
 
         // tomcat，jetty，netty请求
         // 可以选用不同的协议
@@ -31,7 +31,10 @@ public class Provider {
 //        String protocolName = System.getProperty("protocolName");
 
 
+        String protocolName = System.getProperty("protocolName");
+
+        URL url = new URL(protocolName,"localhost", 8080, HelloService.class.getName(), HelloServiceImpl.class);
         Protocol protocol = ProtocolFactory.getProtocol(protocolName);
-        protocol.start(url);
+        protocol.export(url);
     }
 }

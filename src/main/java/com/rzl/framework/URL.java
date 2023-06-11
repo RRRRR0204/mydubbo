@@ -10,10 +10,16 @@ public class URL implements Serializable {
     private String hostname;
     private Integer port;
 
-    public URL(String protocol, String hostname, Integer port) {
+    // 下面两个属性是封装invoker后新加入的
+    private String interfaceName;
+    private Class implClass;
+
+    public URL(String protocol, String hostname, Integer port, String interfaceName, Class implClass) {
         this.protocol = protocol;
         this.hostname = hostname;
         this.port = port;
+        this.interfaceName = interfaceName;
+        this.implClass = implClass;
     }
 
     public String getProtocol() {
@@ -38,5 +44,21 @@ public class URL implements Serializable {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public String getInterfaceName() {
+        return interfaceName;
+    }
+
+    public void setInterfaceName(String interfaceName) {
+        this.interfaceName = interfaceName;
+    }
+
+    public Class getImplClass() {
+        return implClass;
+    }
+
+    public void setImplClass(Class implClass) {
+        this.implClass = implClass;
     }
 }
