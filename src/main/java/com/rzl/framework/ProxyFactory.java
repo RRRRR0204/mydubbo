@@ -38,10 +38,11 @@ public class ProxyFactory<T> {
                 List<URL> urls = RemoteMapRegister.get(interfaceClass.getName());
                 URL url = LoadBalance.random(urls);
 
+                // 可以选用不同的协议
                 HttpClient httpClient = new HttpClient();
                 String result = httpClient.send(url.getHostname(), url.getPort(), invocation);
-                return result;
 
+                return result;
             }
         });
     }

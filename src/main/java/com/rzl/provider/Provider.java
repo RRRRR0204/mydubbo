@@ -20,8 +20,8 @@ public class Provider {
         RemoteMapRegister.regist(HelloService.class.getName(), url);
 
         // tomcat，jetty，netty请求
+        // 可以选用不同的协议
         HttpServer httpServer = new HttpServer();
         httpServer.start(url.getHostname(), url.getPort());
-
     }
 }
