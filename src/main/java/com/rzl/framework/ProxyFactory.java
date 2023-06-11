@@ -1,6 +1,6 @@
 package com.rzl.framework;
 
-import com.rzl.framework.protocal.http.HttpClient;
+import com.rzl.framework.protocol.http.HttpClient;
 import com.rzl.framework.register.RemoteMapRegister;
 
 import java.lang.reflect.InvocationHandler;
@@ -39,8 +39,13 @@ public class ProxyFactory<T> {
                 URL url = LoadBalance.random(urls);
 
                 // 可以选用不同的协议
-                HttpClient httpClient = new HttpClient();
-                String result = httpClient.send(url.getHostname(), url.getPort(), invocation);
+//                HttpClient httpClient = new HttpClient();
+//                String result = httpClient.send(url.getHostname(), url.getPort(), invocation);
+//                String protocolName = System.getProperty("protocolName");
+
+                // 从URL中拿到协议
+                Protocol protocol = ProtocolFactory.getProtocol(url.getProtocol());
+                String result = protocol.send(url, invocation);
 
                 return result;
             }

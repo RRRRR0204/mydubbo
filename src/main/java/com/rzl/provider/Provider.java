@@ -1,7 +1,9 @@
 package com.rzl.provider;
 
+import com.rzl.framework.Protocol;
+import com.rzl.framework.ProtocolFactory;
 import com.rzl.framework.URL;
-import com.rzl.framework.protocal.http.HttpServer;
+import com.rzl.framework.protocol.http.HttpServer;
 import com.rzl.framework.register.LocalRegister;
 import com.rzl.framework.register.RemoteMapRegister;
 import com.rzl.provider.api.HelloService;
@@ -15,13 +17,21 @@ public class Provider {
         // 本地注册
         LocalRegister.regist(HelloService.class.getName(), HelloServiceImpl.class);
 
+        // 将协议信息加入URL中
+        String protocolName = System.getProperty("protocolName");
+
         // 注册中心注册
-        URL url = new URL("localhost", 8080);
+        URL url = new URL(protocolName,"localhost", 8080);
         RemoteMapRegister.regist(HelloService.class.getName(), url);
 
         // tomcat，jetty，netty请求
         // 可以选用不同的协议
-        HttpServer httpServer = new HttpServer();
-        httpServer.start(url.getHostname(), url.getPort());
+//        HttpServer httpServer = new HttpServer();
+//        httpServer.start(url.getHostname(), url.getPort());
+//        String protocolName = System.getProperty("protocolName");
+
+
+        Protocol protocol = ProtocolFactory.getProtocol(protocolName);
+        protocol.start(url);
     }
 }

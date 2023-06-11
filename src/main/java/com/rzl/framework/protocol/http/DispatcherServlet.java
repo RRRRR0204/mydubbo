@@ -1,4 +1,4 @@
-package com.rzl.framework.protocal.http;
+package com.rzl.framework.protocol.http;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

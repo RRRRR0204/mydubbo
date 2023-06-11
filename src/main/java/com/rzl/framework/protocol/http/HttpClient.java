@@ -1,4 +1,4 @@
-package com.rzl.framework.protocal.http;
+package com.rzl.framework.protocol.http;
 
 import com.rzl.framework.Invocation;
 import org.apache.commons.io.IOUtils;

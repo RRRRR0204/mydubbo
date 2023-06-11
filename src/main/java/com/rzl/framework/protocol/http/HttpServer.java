@@ -1,4 +1,4 @@
-package com.rzl.framework.protocal.http;
+package com.rzl.framework.protocol.http;
 
 import org.apache.catalina.*;
 import org.apache.catalina.connector.Connector;

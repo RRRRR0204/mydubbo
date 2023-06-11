@@ -1,8 +1,6 @@
 package com.rzl.consumer;
 
-import com.rzl.framework.Invocation;
 import com.rzl.framework.ProxyFactory;
-import com.rzl.framework.protocal.http.HttpClient;
 import com.rzl.provider.api.HelloService;
 
 public class Consumer {

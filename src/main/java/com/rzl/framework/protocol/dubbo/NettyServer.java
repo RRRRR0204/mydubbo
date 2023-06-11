@@ -1,4 +1,4 @@
-package com.rzl.framework.protocal.dubbo;
+package com.rzl.framework.protocol.dubbo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;

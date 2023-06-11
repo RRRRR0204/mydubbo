@@ -1,4 +1,4 @@
-package com.rzl.framework.protocal.dubbo;
+package com.rzl.framework.protocol.dubbo;
 
 import com.rzl.framework.Invocation;
 import io.netty.bootstrap.Bootstrap;
